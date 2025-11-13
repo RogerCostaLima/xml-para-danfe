@@ -87,7 +87,7 @@ if uploaded_file and submitted:
 
                                 if pdf_bytes:
                                     if numero_nfe:
-                                        output_pdf_name = f"{numero_nfe}.pdf"
+                                        output_pdf_name = f"{chave_acesso}.pdf"
                                     else:
                                         output_pdf_name = file_name.rsplit('/', 1)[-1].lower().replace('.xml', '.pdf')
                                     
