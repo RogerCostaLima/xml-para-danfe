@@ -12,25 +12,19 @@ class DanfeGerador:
                 self.xml_bytes = xml_content
 
 
-    def create_danfe(self) -> bytes | None:
-    """Gera o DANFE em formato PDF e retorna seu conteúdo como um objeto de bytes."""
-    try:
-        buffer = io.BytesIO()
+    def create_danfe(self) -> bytes | None: 
+        #Gera o DANFE em formato PDF e retorna seu conteúdo como um objeto de bytes.
 
-        danfe = Danfe(self.xml_bytes)
+        try:
+            buffer = io.BytesIO() # Cria um buffer (arquivo em memória) para receber os dados do PDF.
+            danfe = Danfe(self.xml_bytes) # Instancia o objeto Danfe com o XML.
+            danfe.output(buffer) # # Gera o PDF, direcionando a saída para o buffer em memória.
+            pdf_bytes = buffer.getvalue() # Obtém o conteúdo completo do buffer como bytes.
+            buffer.close() # Fecha o buffer para liberar recursos.
 
-        # 🔹 Define texto personalizado de homologação:
-        danfe.test_text = "NFe EMITIDA EM HOMOLOGAÇÃO\nSEM VALOR FISCAL"
+            print("DANFE gerado em memória com sucesso.")
+            return pdf_bytes
 
-        # 🔹 Gera o PDF no buffer
-        danfe.output(buffer)
-
-        pdf_bytes = buffer.getvalue()
-        buffer.close()
-
-        print("DANFE gerado em memória com sucesso.")
-        return pdf_bytes
-
-    except Exception as e:
-        print(f"Erro ao gerar DANFE em memória: {e}")
-        return None
+        except Exception as e:
+            print(f"Erro ao gerar DANFE em memória: {e}")
+            return None
