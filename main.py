@@ -160,6 +160,6 @@ else:
 
 st.markdown("---")
 st.markdown(
-    "<p style='text-align: center; font-size: 14px; color: grey;'>Desenvolvido por ALEX VARELA.</p>",
+    "<p style='text-align: center; font-size: 14px; color: grey;'>Desenvolvido por streamlit..</p>",
     unsafe_allow_html=True
 )
